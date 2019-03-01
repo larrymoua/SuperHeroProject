@@ -93,7 +93,9 @@ namespace SuperHeroProject.Controllers
         {
             try
             {
-               db.SuperHeroes.Remove(superHero);
+                var foundHero = db.SuperHeroes.Where(s => s.ID == id).FirstOrDefault();
+                db.SuperHeroes.Remove(foundHero);
+                db.SaveChanges();
                 
                 return RedirectToAction("Index");
             }
